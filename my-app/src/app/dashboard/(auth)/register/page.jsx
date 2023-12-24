@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react'
-import styles from './page.module.css'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import React, { useState } from 'react';
+import styles from './page.module.css';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const Register = () => {
 
-  const [err, setErr] = useState(false);
+  const [error, setError] = useState(null);
   const router = useRouter();
 
   const handleSubmit = async (e)=>{
@@ -30,12 +30,15 @@ const Register = () => {
           })
         });
         res.status === 201 && router.push("/dashboard/login?success=Account has been created")
-    } catch (error) {
-        setErr(true);
+    } catch (err) {
+        setError(err);
+        console.log(err);
     }
   }
   return (
     <div className={styles.container}>
+        <h1 className={styles.title}>Create an Account</h1>
+        <h2 className={styles.subtitle}>Please sign up to see the dashboard.</h2>
         <form className={styles.form} onSubmit={handleSubmit}>
             <input 
               type="text" 
@@ -56,13 +59,14 @@ const Register = () => {
               required
             />
             <button className={styles.button}>Register</button>
+            { error && "Something went wrong!"}
         </form>
-        { err && "Something went wrong!"}
+        <span className={styles.or}>- OR -</span>
         <Link href="/dashboard/login">
           Login with an existing account
         </Link>
     </div>
-  )
-}
+  );
+};
 
 export default Register;
