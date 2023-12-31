@@ -16,7 +16,6 @@ const Portfolio = () => {
         <Link href="/portfolio/applications" className={styles.item}>
           <span className={styles.title}>Applications</span>
         </Link>
-
       </div>
     </div>
   )
