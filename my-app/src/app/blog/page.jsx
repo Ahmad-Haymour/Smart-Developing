@@ -4,9 +4,12 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 async function getData() {
-  const res = await fetch(`http://localhost:3000/api/posts`, {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, {
     cache: "no-store"
   });
+  // const res = await fetch(`http://localhost:3000/api/posts`, {
+  //   cache: "no-store"
+  // });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data")
@@ -23,7 +26,8 @@ const Blog = async () => {
       {
         data.map( (item) => (
           <Link 
-            href={`/blog/${item._id}`} 
+
+            href={`${process.env.NEXTAUTH_URL}/blog/${item._id}`} 
             className={styles.container} 
             key={item.id}
           >
