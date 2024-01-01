@@ -26,7 +26,7 @@ const Blog = async () => {
       {
         data.map( (item) => (
           <Link 
-            href={`${process.env.NEXTAUTH_URL}/blog/${item._id}`} 
+            href={`/blog/${item._id}`} 
             className={styles.container} 
             key={item.id}
           >
