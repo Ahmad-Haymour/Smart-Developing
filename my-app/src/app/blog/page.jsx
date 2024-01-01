@@ -3,9 +3,9 @@ import styles from "./page.module.css"
 import Link from 'next/link'
 import Image from 'next/image'
 
-async function getData(id) {
+async function getData() {
   const res = await fetch(`http://localhost:3000/api/posts`, {
-    cash: "no-store"
+    cache: "no-store"
   });
 
   if (!res.ok) {
@@ -22,7 +22,11 @@ const Blog = async () => {
     <div className={styles.mainContainer}>
       {
         data.map( (item) => (
-          <Link href={`/blog/${item._id}`} className={styles.container} key={item.id}>
+          <Link 
+            href={`/blog/${item._id}`} 
+            className={styles.container} 
+            key={item.id}
+          >
               <div className={styles.imgContainer}>
               <Image 
                 className={styles.image}
