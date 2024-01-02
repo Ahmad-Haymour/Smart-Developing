@@ -6,9 +6,16 @@ import Image from 'next/image'
 async function getData() {
 
   try {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, {
+    const res = await fetch(`/api/posts`, {
       cache: 'no-store',
     });
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data. Status: ${res.status}`);
+    }
+    
+    return res.json();
+
   } catch (error) {
     throw new Error("Failed to fetch data")
   }
@@ -20,7 +27,7 @@ async function getData() {
   // if (!res.ok) {
   //   throw new Error("Failed to fetch data")
   // }
-  return res.json();
+  // return res.json();
 }
 
 const Blog = async () => {
@@ -30,7 +37,8 @@ const Blog = async () => {
   return (
     <div className={styles.mainContainer}>
       {
-        data?.map( (item) => (
+        !data ? <h1>Data not found!!!</h1>:
+        data.map( (item) => (
           <Link 
             href={`/blog/${item._id}`} 
             className={styles.container} 
