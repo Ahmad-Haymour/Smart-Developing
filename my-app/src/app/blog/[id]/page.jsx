@@ -4,24 +4,18 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 async function getData( id ) {
-  // const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${id}`, {
-  //   cache: "no-store",
-  // });
 
-  // if (!res.ok) {
-  //   return notFound()
-  // }
-  
-  try {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/${id}`, {
-      cache: 'no-store',
-      });
-  } catch (error) {
-      return notFound()
+  const res = await fetch(process.env.NEXTAUTH_URL + `/api/posts/${id}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    return notFound()
   }
-
+  
   return res.json();
 }
+
 
 export async function generateMetadata({ params }) {
   
@@ -33,8 +27,8 @@ export async function generateMetadata({ params }) {
 }
 
 const BlogPost = async ({ params }) => {
+
   const data = await getData(params.id);
-  if (!data) return <h3>Not Found!</h3>;
 
   return (
     <div className={styles.container}>
