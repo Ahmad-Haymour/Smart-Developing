@@ -29,13 +29,13 @@ const Blog = async () => {
             key={item.id}
           >
               <div className={styles.imgContainer}>
-              <Image 
-                className={styles.image}
-                width={400}
-                height={250}
-                src={item.img}
-                alt=''
-              />
+                <Image 
+                  className={styles.image}
+                  width={400}
+                  height={250}
+                  src={item.img}
+                  alt=''
+                />
               </div>
               <div className={styles.content}>
                 <h1 className={styles.title}>{item.title}</h1>
