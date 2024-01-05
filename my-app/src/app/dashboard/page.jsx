@@ -36,10 +36,11 @@ const Dashboard = () => {
         `The URL must start with one of the allowed domains. 
          Allowed domains are: ${allowedDomains.join(' OR ')}`
       )
+      return false;
     } else {
-        setErr(null); 
+        setErr(null);
+        return true; 
     }
-    return isMatched;
   }
 
   const handleSubmit = async (e) => {
@@ -60,6 +61,7 @@ const Dashboard = () => {
     const imageDomainMessage = checkDomain(img);
 
     if (!imageDomainMessage) {
+      console.log("LOOK HERE: ", imageDomainMessage);
       return;
     }
 
