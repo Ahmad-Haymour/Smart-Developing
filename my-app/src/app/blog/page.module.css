@@ -10,6 +10,9 @@
     flex-direction: row-reverse;
 }
 
+.imgContainer {
+    flex: 1;
+}
 .img {
     object-fit: cover;
 }
@@ -20,11 +23,6 @@
     flex-direction: column;
     gap: 20px;
     justify-content: center;
-}
-
-.container:nth-child(odd) .title,
-.container:nth-child(odd) .desc {
-    order: -1;
 }
 
 .title {
