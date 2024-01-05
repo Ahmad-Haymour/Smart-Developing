@@ -31,12 +31,10 @@ const Dashboard = () => {
     const isMatched = allowedDomains.some(domain => imageURL.startsWith(domain));
 
     if (!isMatched) {
-      setErr (
-          `The URL must start with one of the allowed domains. 
-           Allowed domains are: ${allowedDomains.join(' OR ')}`
-      )
+      return true;
     } else {
         setErr(null); 
+        return false;
     }
   }
 
@@ -52,7 +50,7 @@ const Dashboard = () => {
 
     const imageDomainMessage = checkDomain(img);
 
-    if (imageDomainMessage !== null) {
+    if (imageDomainMessage) {
       setErr (
         <p className={styles.errMessage}>
            The URL must start with one of the allowed domains. 
