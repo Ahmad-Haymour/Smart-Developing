@@ -1,22 +1,12 @@
-.catTitle {
-    color: #53c28b;
-}
-
-.item {
+.container {
     display: flex;
+    align-items: center;
     gap: 50px;
-    margin-top: 50px;
-    margin-bottom: 100px;
+    margin: 50px 0;  
 }
 
 .item:nth-child(odd) {
     flex-direction: row-reverse;
-}
-
-.imgContainer {
-    flex: 1;
-    height: 500px;
-    position: relative;
 }
 
 .img {
@@ -32,9 +22,11 @@
 }
 
 .title {
-    font-size: 50px;
+    font-size: 30px;
+    margin-bottom: 10px;
 }
 
 .desc {
     font-size: 20px;
+    color: #999;
 }

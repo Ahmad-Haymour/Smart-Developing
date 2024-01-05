@@ -12,6 +12,9 @@
     align-items: center;
     justify-content: space-between;
     margin: 50px 0px;
+    border: 3px solid #999;
+    border-radius: 5px;
+    padding: 0 20px;
 }
 
 .delete {
@@ -34,6 +37,11 @@
     background-color: transparent;
     font-weight: bold;
     font-size: 20px;
+}
+
+.errMessage {
+    font-size: 16px;
+    color: #c13333;
 }
 
 .button {

@@ -8,8 +8,8 @@ import Image from 'next/image';
 
 const Dashboard = () => {
 
-  const session = useSession()
-  const router = useRouter()
+  const session = useSession();
+  const router = useRouter();
   
   const fetcher = (...args) => fetch(...args).then(res=> res.json())
   
@@ -22,6 +22,24 @@ const Dashboard = () => {
   if (session.status === "unauthenticated") {
     router?.push("/dashboard/login");
   }
+  
+  const [allowedDomains] = useState(['"https://cdn.pixabay.com/', 'https://images.pexels.com/',]);
+  const [err, setErr] = useState(null);
+
+  const checkDomain = (imageURL) =>{
+    const isMatched = allowedDomains.some(domain => imageURL.startsWith(domain));
+
+    if (!isMatched) {
+      setErr (
+        <p className={styles.errMessage}>
+           The URL must start with one of the allowed domains. 
+           Allowed domains are: {allowedDomains.join(' OR ')}
+        </p>
+      )
+    } else {
+        setErr(null); 
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +48,10 @@ const Dashboard = () => {
     const desc = e.target[1].value;
     const img = e.target[2].value;
     const content = e.target[3].value;
+
+    const imageDomainMessage = checkDomain(img);
+
+    if (imageDomainMessage !== null) return;
 
     try {
       await fetch("/api/posts", {
@@ -93,6 +115,9 @@ const Dashboard = () => {
           <input type="text" placeholder='Title' className={styles.input}/>
           <input type="text" placeholder='Desc' className={styles.input} />
           <input type="text" placeholder='Image' className={styles.input} />
+          {
+            err && {err}
+          }
           <textarea placeholder='Content' className={styles.textArea} cols="30" rows="10"></textarea>
           <button className={styles.button}>Send</button>
         </form>
