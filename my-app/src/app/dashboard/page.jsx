@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
 import { useState } from "react"
+import Link from "next/link"
 
 const Dashboard = () => {
 
@@ -24,7 +25,7 @@ const Dashboard = () => {
     router?.push("/dashboard/login");
   }
   
-  const [allowedDomains] = useState(['"https://cdn.pixabay.com/', 'https://images.pexels.com/',]);
+  const [allowedDomains] = useState(['https://cdn.pixabay.com/', 'https://images.pexels.com/']);
   const [err, setErr] = useState(null);
 
   const checkDomain = (imageURL) =>{
@@ -96,7 +97,11 @@ const Dashboard = () => {
             isLoading ? "Loading"
             :
             data?.map((post) => (
-              <div className={styles.post} key={post._id}> 
+              <Link 
+                href={`/blog/${post._id}`} 
+                className={styles.post} 
+                key={post._id}
+              > 
                   <div className={styles.imgContainer}>
                     <Image
                         src={post.img} alt="" width="200" height="100"
@@ -111,7 +116,7 @@ const Dashboard = () => {
                   >
                     X
                   </span>
-                </div>
+                </Link>
             ))
           }
         </div>
