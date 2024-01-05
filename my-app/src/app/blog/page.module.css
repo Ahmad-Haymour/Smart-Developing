@@ -22,6 +22,11 @@
     justify-content: center;
 }
 
+.container:nth-child(odd) .title,
+.container:nth-child(odd) .desc {
+    order: -1;
+}
+
 .title {
     font-size: 30px;
     margin-bottom: 10px;
