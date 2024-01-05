@@ -32,10 +32,8 @@ const Dashboard = () => {
 
     if (!isMatched) {
       setErr (
-        <p className={styles.errMessage}>
-           The URL must start with one of the allowed domains. 
-           Allowed domains are: {allowedDomains.join(' OR ')}
-        </p>
+          `The URL must start with one of the allowed domains. 
+           Allowed domains are: ${allowedDomains.join(' OR ')}`
       )
     } else {
         setErr(null); 
@@ -127,7 +125,7 @@ const Dashboard = () => {
           <input type="text" placeholder='Desc' className={styles.input} />
           <input type="text" placeholder='Image' className={styles.input} />
           {
-            err && {err}
+            err && <p className={styles.errMessage}>{err}</p>
           }
           <textarea placeholder='Content' className={styles.textArea} cols="30" rows="10"></textarea>
           <button className={styles.button}>Send</button>
