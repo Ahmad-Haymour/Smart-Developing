@@ -52,10 +52,8 @@ const Dashboard = () => {
 
     if (imageDomainMessage) {
       setErr (
-        <p className={styles.errMessage}>
-           The URL must start with one of the allowed domains. 
-           Allowed domains are: {allowedDomains.join(' OR ')}
-        </p>
+           `The URL must start with one of the allowed domains. 
+            Allowed domains are: ${allowedDomains.join(' OR ')}`
       )
       return;
     }

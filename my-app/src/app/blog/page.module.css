@@ -5,7 +5,7 @@
     margin: 50px 0;  
 }
 
-.item:nth-child(odd) {
+.container:nth-child(odd) {
     flex-direction: row-reverse;
 }
 
