@@ -21,8 +21,8 @@
     cursor: pointer;
     color: red;
     background-color: #999;
-    width: 25px;
-    height: 25px;
+    width: 50%;
+    text-align: center;
 }
 
 .new{
