@@ -45,6 +45,8 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    setErr(null);
+
     const title = e.target[0].value;
     const desc = e.target[1].value;
     const img = e.target[2].value;
@@ -52,7 +54,15 @@ const Dashboard = () => {
 
     const imageDomainMessage = checkDomain(img);
 
-    if (imageDomainMessage !== null) return;
+    if (imageDomainMessage !== null) {
+      setErr (
+        <p className={styles.errMessage}>
+           The URL must start with one of the allowed domains. 
+           Allowed domains are: {allowedDomains.join(' OR ')}
+        </p>
+      )
+      return;
+    }
 
     try {
       await fetch("/api/posts", {
