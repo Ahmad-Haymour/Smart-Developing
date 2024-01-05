@@ -22,7 +22,7 @@
     color: red;
     background-color: #999;
     width: 50%;
-    text-align: center;
+    margin: 0 auto;
 }
 
 .new{
