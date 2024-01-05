@@ -44,6 +44,12 @@ const Dashboard = () => {
     
     setErr(null);
 
+    // Check if the user is authenticated
+    if (!session || !session.data || !session.data.user || !session.data.user.name) {
+      // Handle the case where the user is not authenticated, redirect to login page
+      router?.push("/dashboard/login");
+      return;
+    }
     const title = e.target[0].value;
     const desc = e.target[1].value;
     const img = e.target[2].value;
