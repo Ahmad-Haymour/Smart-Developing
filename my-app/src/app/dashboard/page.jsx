@@ -28,25 +28,25 @@ const Dashboard = () => {
   const [allowedDomains] = useState(['https://cdn.pixabay.com/', 'https://images.pexels.com/']);
   const [err, setErr] = useState(null);
 
-  const checkDomain = (imageURL) =>{
-    const isMatched = allowedDomains.some(domain => imageURL.startsWith(domain));
+  // const checkDomain = (imageURL) =>{
+  //   const isMatched = allowedDomains.some(domain => imageURL.startsWith(domain));
 
-    if (!isMatched) {
-      setErr (
-        `The URL must start with one of the allowed domains. 
-         Allowed domains are: ${allowedDomains.join(' OR ')}`
-      )
-      return false;
-    } else {
-        setErr(null);
-        return true; 
-    }
-  }
+  //   if (!isMatched) {
+  //     setErr (
+  //       `The URL must start with one of the allowed domains. 
+  //        Allowed domains are: ${allowedDomains.join(' OR ')}`
+  //     )
+  //     return false;
+  //   } else {
+  //       setErr(null);
+  //       return true; 
+  //   }
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    setErr(null);
+    // setErr(null);
 
     if (!session || !session.data || !session.data.user || !session.data.user.name) {
       router?.push("/dashboard/login");
@@ -58,12 +58,12 @@ const Dashboard = () => {
     const img = e.target[2].value;
     const content = e.target[3].value;
 
-    const imageDomainMessage = checkDomain(img);
+    // const imageDomainMessage = checkDomain(img);
 
-    if (!imageDomainMessage) {
-      console.log("LOOK HERE: ", imageDomainMessage);
-      return;
-    }
+    // if (!imageDomainMessage) {
+    //   console.log("LOOK HERE: ", imageDomainMessage);
+    //   return;
+    // }
 
     try {
       await fetch("/api/posts", {
