@@ -15,23 +15,24 @@ const Dashboard = () => {
   
   const fetcher = (...args) => fetch(...args).then(res=> res.json())
   
-  const { data, mutate, error, isLoading } = useSWR(`/api/posts?username=${session?.data?.user.name}`, fetcher) 
+  const { data, mutate, error, isLoading } = useSWR(session ? `/api/posts?username=${session?.data?.user?.name}` : null, fetcher) 
 
-  if (session.status === "loading") {
+  if (session.status === "loading" || isLoading) {
     return <p>Loading...</p>;
   }
   
-  if (session.status === "unauthenticated") {
+  if (session.status === "unauthenticated" || !session) {
     router?.push("/dashboard/login");
+    return null; // Stop rendering if not authenticated
   }
   
   const [allowedDomains] = useState(['https://cdn.pixabay.com/', 'https://images.pexels.com/']);
   const [err, setErr] = useState(null);
 
-  // const checkDomain = (imageURL) =>{
-  //   const isMatched = allowedDomains.some(domain => imageURL.startsWith(domain));
+  const checkDomain = (imageURL) =>{
+    const isMatched = allowedDomains.some(domain => imageURL.startsWith(domain));
 
-  //   if (!isMatched) {
+    if (!isMatched) {
   //     setErr (
   //       `The URL must start with one of the allowed domains. 
   //        Allowed domains are: ${allowedDomains.join(' OR ')}`
@@ -40,13 +41,14 @@ const Dashboard = () => {
   //   } else {
   //       setErr(null);
   //       return true; 
-  //   }
-  // }
+      return isMatched;
+    }      
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // setErr(null);
+    setErr(null);
 
     if (!session || !session.data || !session.data.user || !session.data.user.name) {
       router?.push("/dashboard/login");
@@ -58,12 +60,13 @@ const Dashboard = () => {
     const img = e.target[2].value;
     const content = e.target[3].value;
 
-    // const imageDomainMessage = checkDomain(img);
+    const imageDomainMessage = checkDomain(img);
 
-    // if (!imageDomainMessage) {
-    //   console.log("LOOK HERE: ", imageDomainMessage);
-    //   return;
-    // }
+    if (!imageDomainMessage) {
+      console.log("LOOK HERE: ", imageDomainMessage);
+      setErr(true);
+      return;
+    }
 
     try {
       await fetch("/api/posts", {
@@ -132,7 +135,11 @@ const Dashboard = () => {
           <input type="text" placeholder='Desc' className={styles.input} />
           <input type="text" placeholder='Image' className={styles.input} />
           {
-            err && <p className={styles.errMessage}>{err}</p>
+            err && 
+            <p className={styles.errMessage}>
+              The URL must start with one of the allowed domains. 
+                Allowed domains are: { allowedDomains.join(' OR ') }
+            </p>
           }
           <textarea placeholder='Content' className={styles.textArea} cols="30" rows="10"></textarea>
           <button className={styles.button}>Send</button>
