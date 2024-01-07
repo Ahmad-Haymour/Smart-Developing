@@ -26,18 +26,13 @@ const Dashboard = () => {
     return null; // Stop rendering if not authenticated
   }
   
-  const [allowedDomains] = useState(['https://cdn.pixabay.com/', 'https://images.pexels.com/']);
-  const [err, setErr] = useState(null);
-
-  const checkDomain = (imageURL) =>{
-    const isMatched = allowedDomains.some(domain => imageURL.startsWith(domain));
-    return isMatched;
-  }
+  const allowedDomains = ['https://cdn.pixabay.com/', 'https://images.pexels.com/'];
+  const [err, setErr] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    setErr(null);
+    setErr(false);
 
     if (!session || !session.data || !session.data.user || !session.data.user.name) {
       router?.push("/dashboard/login");
@@ -49,9 +44,9 @@ const Dashboard = () => {
     const img = e.target[2].value;
     const content = e.target[3].value;
 
-    const imageDomainMessage = checkDomain(img);
+    const isMatched = allowedDomains.some(domain => img.startsWith(domain));
 
-    if (!imageDomainMessage) {
+    if (!isMatched) {
       console.log("LOOK HERE: ", imageDomainMessage);
       console.log("LOOK HERE ERROR: ", error);
       setErr(true);
