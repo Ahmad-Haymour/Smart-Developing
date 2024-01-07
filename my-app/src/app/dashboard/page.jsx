@@ -27,12 +27,12 @@ const Dashboard = () => {
   }
   
   const allowedDomains = ['https://cdn.pixabay.com/', 'https://images.pexels.com/'];
-  const [err, setErr] = useState(false);
+  // const [err, setErr] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    setErr(false);
+    // setErr(false);
 
     if (!session || !session.data || !session.data.user || !session.data.user.name) {
       router?.push("/dashboard/login");
@@ -48,7 +48,7 @@ const Dashboard = () => {
 
     if (!isMatched) {
       console.error("Error: Image domain not allowed");
-      setErr(true);
+      // setErr(true);
       return;
     }
 
@@ -118,13 +118,13 @@ const Dashboard = () => {
           <input type="text" placeholder='Title' className={styles.input}/>
           <input type="text" placeholder='Desc' className={styles.input} />
           <input type="text" placeholder='Image' className={styles.input} />
-          {
+          {/* {
             err && 
             <p className={styles.errMessage}>
               The URL must start with one of the allowed domains. 
                 Allowed domains are: { allowedDomains.join(' OR ') }
             </p>
-          }
+          } */}
           <textarea placeholder='Content' className={styles.textArea} cols="30" rows="10"></textarea>
           <button className={styles.button}>Send</button>
         </form>
