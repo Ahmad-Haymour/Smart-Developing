@@ -5,7 +5,6 @@ import useSWR from 'swr'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
-import { useState } from "react"
 import Link from "next/link"
 
 const Dashboard = () => {
@@ -27,13 +26,10 @@ const Dashboard = () => {
   }
   
   const allowedDomains = ['https://cdn.pixabay.com/', 'https://images.pexels.com/'];
-  // const [err, setErr] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // setErr(false);
-
     if (!session || !session.data || !session.data.user || !session.data.user.name) {
       router?.push("/dashboard/login");
       return;
@@ -48,7 +44,6 @@ const Dashboard = () => {
 
     if (!isMatched) {
       console.error("Error: Image domain not allowed");
-      // setErr(true);
       return;
     }
 
@@ -90,16 +85,15 @@ const Dashboard = () => {
             isLoading ? "Loading"
             :
             data?.map((post) => (
-              <Link 
-                href={`/blog/${post._id}`} 
+              <div 
                 className={styles.post} 
                 key={post._id}
               > 
-                  <div className={styles.imgContainer}>
+                  <Link className={styles.imgContainer} href={`/blog/${post._id}`}>
                     <Image
                         src={post.img} alt="" width="200" height="100"
                     />
-                  </div>
+                  </Link>
                   <h2  className={styles.postTitle}>
                     {post.title}
                   </h2>
@@ -109,7 +103,7 @@ const Dashboard = () => {
                   >
                     X
                   </span>
-                </Link>
+                </div>
             ))
           }
         </div>
@@ -117,14 +111,7 @@ const Dashboard = () => {
           <h1>Add New Post</h1>
           <input type="text" placeholder='Title' className={styles.input}/>
           <input type="text" placeholder='Desc' className={styles.input} />
-          <input type="text" placeholder='Image' className={styles.input} />
-          {/* {
-            err && 
-            <p className={styles.errMessage}>
-              The URL must start with one of the allowed domains. 
-                Allowed domains are: { allowedDomains.join(' OR ') }
-            </p>
-          } */}
+          <input type="text" placeholder={allowedDomains.join(' OR ')} className={styles.input} />
           <textarea placeholder='Content' className={styles.textArea} cols="30" rows="10"></textarea>
           <button className={styles.button}>Send</button>
         </form>
