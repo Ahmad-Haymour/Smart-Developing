@@ -47,8 +47,7 @@ const Dashboard = () => {
     const isMatched = allowedDomains.some(domain => img.startsWith(domain));
 
     if (!isMatched) {
-      console.log("LOOK HERE: ", imageDomainMessage);
-      console.log("LOOK HERE ERROR: ", error);
+      console.error("Error: Image domain not allowed");
       setErr(true);
       return;
     }
@@ -67,7 +66,7 @@ const Dashboard = () => {
       mutate();
       e.target.reset()
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 
@@ -79,7 +78,7 @@ const Dashboard = () => {
         });
         mutate();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
   }
 
