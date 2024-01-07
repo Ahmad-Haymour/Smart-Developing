@@ -131,6 +131,8 @@ const Dashboard = () => {
       </div>
     )
   }
+
+  return <h2>Loading...</h2>;
 }
 
 export default Dashboard
