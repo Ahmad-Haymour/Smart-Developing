@@ -31,18 +31,7 @@ const Dashboard = () => {
 
   const checkDomain = (imageURL) =>{
     const isMatched = allowedDomains.some(domain => imageURL.startsWith(domain));
-
-    if (!isMatched) {
-  //     setErr (
-  //       `The URL must start with one of the allowed domains. 
-  //        Allowed domains are: ${allowedDomains.join(' OR ')}`
-  //     )
-  //     return false;
-  //   } else {
-  //       setErr(null);
-  //       return true; 
-      return isMatched;
-    }      
+    return isMatched;
   }
 
   const handleSubmit = async (e) => {
@@ -64,6 +53,7 @@ const Dashboard = () => {
 
     if (!imageDomainMessage) {
       console.log("LOOK HERE: ", imageDomainMessage);
+      console.log("LOOK HERE ERROR: ", error);
       setErr(true);
       return;
     }
