@@ -6,18 +6,19 @@ import {items} from "./data"
 import { notFound } from 'next/navigation';
 
 const getData = ( cat ) =>{
-  const data = items[cat]
+  const data = items[cat];
 
+  console.log("DATA: ", data);
   if (data){
-    return data
+    return data;
   }
 
-  return notFound()
+  return notFound();
 }
 
 const Category = ({params}) => {
 
-  const data = getData(params.category)
+  const data = getData(params.category);
 
   return (
     <div className={styles.container}>
