@@ -14,11 +14,13 @@ const getData = ( cat ) =>{
   }
 
   return notFound();
-}
+};
 
 const Category = ({params}) => {
 
   const data = getData(params.category);
+  console.log("DATA in Category: ", data);
+
 
   return (
     <div className={styles.container}>
@@ -44,6 +46,6 @@ const Category = ({params}) => {
       }
     </div>
   )
-}
+};
 
-export default Category
+export default Category;
