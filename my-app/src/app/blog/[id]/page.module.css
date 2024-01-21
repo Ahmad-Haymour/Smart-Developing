@@ -1,5 +1,6 @@
 .top {
   display: flex;
+  gap: 50px;
 }
 
 .info {
