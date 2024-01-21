@@ -110,7 +110,7 @@ const Dashboard = () => {
         <form className={styles.new} onSubmit={handleSubmit}>
           <h1>Add New Post</h1>
           <input type="text" placeholder='Title' className={styles.input}/>
-          <input type="text" placeholder='Desc' className={styles.input} />
+          <input type="text" placeholder='Description' className={styles.input} />
           <input type="text" placeholder="Image" className={styles.input} />
           <p className={styles.errMessage}>{allowedDomains.join(' OR ')}</p>
           <textarea placeholder='Content' className={styles.textArea} cols="30" rows="10"></textarea>

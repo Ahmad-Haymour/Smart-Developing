@@ -29,7 +29,7 @@ const Category = ({params}) => {
         data && <h1>{data[0].title}</h1>
       }
       {
-        data && data.map((item) =>{
+        data && data.map((item) =>(
           <div className={styles.item} key={item.id}>
             <div className={styles.content}>
               <h1 className={styles.title}>{item.title}</h1>
@@ -45,7 +45,7 @@ const Category = ({params}) => {
               />
             </div>
           </div>
-        })
+        ))
       }
     </div>
   )
