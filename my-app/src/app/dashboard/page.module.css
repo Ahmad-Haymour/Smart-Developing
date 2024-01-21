@@ -20,7 +20,6 @@
 .delete {
     cursor: pointer;
     color: red;
-    background-color: #999;
     width: 20px;
     margin: 0;
     text-align: center;
