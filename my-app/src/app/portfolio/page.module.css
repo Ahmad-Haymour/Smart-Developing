@@ -42,3 +42,7 @@
 .item:hover .title {
     color: #53c28b;
 }
+
+.item:hover {
+    border: 8px solid #53c28b;
+}
