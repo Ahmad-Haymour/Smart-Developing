@@ -19,7 +19,7 @@ export const items = {
         title: "Code Journey: App Development",
         desc: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat tenetur?",
         image:
-          "/applications/server.jpg",
+          "/applications/program.jpg",
       }
     ],
     illustrations: [
