@@ -112,6 +112,7 @@ const Dashboard = () => {
           <input type="text" placeholder='Title' className={styles.input}/>
           <input type="text" placeholder='Description' className={styles.input} />
           <input type="text" placeholder="Image" className={styles.input} />
+          <h2>Allowed Domains:</h2>
           <p className={styles.errMessage}>{allowedDomains.join(' OR ')}</p>
           <textarea placeholder='Content' className={styles.textArea} cols="30" rows="10"></textarea>
           <button className={styles.button}>Send</button>

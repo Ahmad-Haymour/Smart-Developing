@@ -1,5 +1,7 @@
 .catTitle {
     color: #53c28b;
+    text-transform: capitalize;
+    margin: 50px 0;
 }
 
 .item {
